@@ -1,6 +1,5 @@
 const https = require('https')
 const axios = require('axios')
-const { resolve } = require('path')
 
 const getStockDetailsWithAxios = async date => {
     try {
@@ -25,7 +24,7 @@ const getStockDetailsWithHttps = async date => {
   try {
     const url = `https://jsonmock.hackerrank.com/api/stocks?date=${date}`
    
-    return new Promise( (resolve, reject ) => {
+    return new Promise( (resolve, _ ) => {
 
       https.get(url, res => {
         res.setEncoding("utf8")
@@ -58,12 +57,12 @@ const getStockDetailsWithHttps = async date => {
 const main = async () => {
     const date = '5-January-2000'
     const date2 = '10-january-2020'
-    // const test1 = await getStockDetailsWithAxios(date)
-    // const test2 = await getStockDetailsWithAxios(date2)
+    const test1 = await getStockDetailsWithAxios(date)
+    const test2 = await getStockDetailsWithAxios(date2)
     const test3 = await getStockDetailsWithHttps(date)
     const test4 = await getStockDetailsWithHttps(date2)
     console.log(
-      // 'with axios', test1, test2,
+      'with axios', test1, test2,
       'with https', test3, test4
     ) 
 }
